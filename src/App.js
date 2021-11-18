@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 const url = 'https://course-api.com/react-tabs-project';
 
 function App() {
@@ -34,9 +35,33 @@ function App() {
       </div>
       <div className='jobs-center'>
         {/* btn container */}
+        <div className='btn-container'>
+          {jobs.map((job, index) => {
+            return (
+              <button
+                key={job.id}
+                onClick={() => {
+                  setValue(index);
+                }}
+                className={`job-btn ${index === value && 'active-btn'}`}>
+                {job.company}
+              </button>
+            );
+          })}
+        </div>
         {/* job info */}
         <article className='job-info'>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
+          <h4>{company}</h4>
+          <p className='job-date'>{dates}</p>
+          {duties.map((duty, index) => {
+            return (
+              <div className='job-desc' key={index}>
+                <FaAngleDoubleRight className='job-icon'> </FaAngleDoubleRight>
+                <p>{duty}</p>
+              </div>
+            );
+          })}
         </article>
       </div>
     </section>
